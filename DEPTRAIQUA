@@ -1,65 +1,132 @@
--- Could've code better in lua, don't give a shit, if it work, it worked
 repeat wait() until game:IsLoaded()
+local Client = game.Players.LocalPlayer
 
-local host = getgenv().EthernetIPv4 or game.Players.LocalPlayer.PlayerGui:FindFirstChild('TouchGui') and "10.0.2.2" or "localhost"
-local serverUrl = "http://" .. host .. ":1306/received_script.lua"
+getgenv().EthernetIPv4 = ""
+getgenv().Port = 1000
 
-local function fetchScript()
-    local success, response = pcall(function()
-        return request({Url = serverUrl, Method='GET'}).Body
-    end)
+local host = getgenv().EthernetIPv4 or 
+             (Client.PlayerGui:FindFirstChild('TouchGui') and "10.0.2.2") or "localhost"
 
-    if success then
-        return response
-    else
-        warn("[VSExecutor]: Failed to fetch script: " .. tostring(response))
-        return nil
-    end
+local serverUrl = string.format("http://%s:%d/received_script.lua", host, getgenv().Port)
+local logUrl = string.format("http://%s:%d/log", host, getgenv().Port)
+local task = task or getrenv().task
+
+local LogService = game:GetService("LogService")
+local executor_name = "["..identifyexecutor().."]: " or "[Undefined]: "
+
+local defineMessageType = function(type)
+    local shouldReturn = type == 0 and "[Output]" or type == 1 and "[Info]" or type == 2 and "[Warning]" or type == 3 and "[Error]"
+    return shouldReturn
 end
 
-local function executeScript(scriptContent)
-    local success, errorMessage = pcall(function()
-        loadstring(scriptContent)()
+local function sendLog(message)
+    local success, response = pcall(function()
+        return request({
+            Url = logUrl,
+            Method = 'POST',
+            Headers = {["Content-Type"] = "text/plain"},
+            Body = message
+        })
     end)
 
     if not success then
-        warn("[VSExecutor]: Error executing script: " .. errorMessage)
+        warn(executor_name.." Failed to send log: " .. tostring(response))
+    --[[else
+        local responseBody = response and response.Body or "No response body"
+        print(executor_name.." Log sent successfully. Server responded with: " .. responseBody)]]
+    end
+end
+
+if _G.LogEvent and typeof(_G.LogEvent) == "RBXScriptConnection" then
+    _G.LogEvent:Disconnect()
+end
+
+_G.LogEvent = LogService.MessageOut:Connect(function(message, messageType)
+    sendLog(string.format("%s: %s", defineMessageType(messageType.Value), message))
+end)
+
+local function fetchScript()
+    local success, response = pcall(function()
+        return request({Url = serverUrl, Method = 'GET'}).Body
+    end)
+
+    if not success then
+        local errorMessage = "["..executor_name"]: Failed to fetch script: " .. tostring(response)
+        warn(errorMessage)
+        return nil
+    end
+
+    return response
+end
+
+local function executeScript(scriptContent)
+    local func, compileError = loadstring(scriptContent)
+    if not func then
+        local errorMessage = string.format(
+            "%s Error compiling script: %s",
+            executor_name,
+            compileError
+        )
+        warn(errorMessage)
+        sendLog(string.format("[Error]: %s", errorMessage))
+        return
+    end
+
+    local success, runtimeError = pcall(function()
+        spawn(function()
+            func()
+        end)
+    end)
+
+    if not success then
+        local errorMessage = string.format(
+            "%s Error executing script: %s",
+            executor_name,
+            runtimeError
+        )
+        warn(errorMessage)
+        sendLog(string.format("[Error]: %s", errorMessage))
+    else
+        sendLog(string.format("[Success]: %s Executed script successfully.", executor_name))
     end
 end
 
 local function checkAndExecuteNewScript()
     local scriptContent = fetchScript()
-    if scriptContent then
-        if scriptContent ~= "" and scriptContent ~= "HTTP Error Code: 404 Reason: Not Found" then
-            print("[VSExecutor]: Executing new script")
-            spawn(function()
-                executeScript(scriptContent)
-            end)
-        end
+    if scriptContent and scriptContent ~= "" and scriptContent ~= "HTTP Error Code: 404 Reason: Not Found" then
+        spawn(function()
+            executeScript(scriptContent)
+        end)
     end
 end
 
 local function checkAndClearServer()
     local timeout = tick()
-    repeat wait(1)
+    repeat
+        wait(1)
         local success, response = pcall(function()
             return request({Url = serverUrl, Method='GET'}).Body
         end)
         if success and response == "" then
             return true
         elseif tick() - timeout > 6 then
-            warn("[VSExecutor]: localhost server not working properly")
+            local warningMessage = executor_name.." localhost server not working properly"
+            warn(warningMessage)
             return false
         end
     until false
 end
 
 if checkAndClearServer() then
-    print("[VSExecutor]: Server connected and ready to execute script.")
+    local logMessage = executor_name.." Server connected and ready to execute script."
+    --print(logMessage)
+    sendLog(string.format("[Success]: %s", logMessage))
 else
-    print("[VSExecutor]: Failed to connect to the server.")
+    local logMessage = executor_name.." Failed to connect to the server."
+    print(logMessage)
 end
 
-while wait(.2) do
+while true do
     checkAndExecuteNewScript()
+    task.wait(0.2)
 end
