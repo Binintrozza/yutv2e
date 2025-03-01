@@ -8,6 +8,7 @@ local Games = {
 for i,v in pairs(Games) do
     for _,k in pairs(v) do
         if   k == game.PlaceId then
+                loadstring(game:HttpGet(("https://raw.githubusercontent.com/Binintrozza/yutv2e/refs/heads/main/Ecoeuxntor_tont")))()	
                 loadstring(game:HttpGet(("https://raw.githubusercontent.com/Binintrozza/yutv2e/main/"..tostring(i))))()	
             break
         end
