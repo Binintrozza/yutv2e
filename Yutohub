@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-_G.ExecuteYuto = false
+	getgenv().executed_buang = true
 local Games = {
     ["afss"] = {6299805723,15278073804},
     ["ACS"] = {14433762945},
@@ -7,11 +7,13 @@ local Games = {
     ["AA"] = {10611639},
     ["ARC"] = {34644452},
 }
-if _G.ExecuteYuto  == false then
+if getgenv().ExecuteYuto ~= nil then
+    return
+end
 for i,v in pairs(Games) do
     for _,k in pairs(v) do
         if   k == game.PlaceId or k == game.CreatorId then
-                _G.ExecuteYuto = true
+                getgenv().ExecuteYuto = true
                 loadstring(game:HttpGet(("https://raw.githubusercontent.com/Binintrozza/yutv2e/main/"..tostring(i))))()	
             break
         end
