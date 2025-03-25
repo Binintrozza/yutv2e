@@ -18,4 +18,3 @@ for i,v in pairs(Games) do
         end
     end
 end
-end
