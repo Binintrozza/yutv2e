@@ -4,6 +4,7 @@ local Games = {
     ["ACS"] = {14433762945},
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
+    ["ARC"] = {34644452},
 }
 
 for i,v in pairs(Games) do
