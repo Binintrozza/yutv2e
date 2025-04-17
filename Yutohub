@@ -1,7 +1,6 @@
 repeat wait() until game:IsLoaded()
 local Games = {
     ["afss"] = {6299805723,15278073804},
-    ["ACS"] = {14433762945},
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
     ["ARC"] = {34644452},
