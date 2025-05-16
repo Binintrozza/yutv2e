@@ -4,7 +4,7 @@ local Games = {
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
     ["https://api.luarmor.net/files/v3/loaders/b5109fa433b07a62f7e0e31d51950451.lua"] = {34644452},
-    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415},
+    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392},
 
 }
 if getgenv().ExecuteYuto ~= nil then
