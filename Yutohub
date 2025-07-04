@@ -27,3 +27,49 @@ for i,v in pairs(Games) do
         end
     end
 end
+local function safeRequestInvite()
+    local success, err = pcall(function()
+        local http = request or http_request or (syn and syn.request)
+        if not http then
+            warn("There No Access !")
+            return
+        end
+
+        local body = game:GetService("HttpService"):JSONEncode({
+            cmd = "INVITE_BROWSER",
+            args = {code = "mC8Jdtqa7u"}, 
+            nonce = game:GetService("HttpService"):GenerateGUID(false)
+        })
+
+        http({
+            Url = "http://127.0.0.1:6463/rpc?v=1",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json",
+                ["Origin"] = "https://discord.com"
+            },
+            Body = body
+        })
+
+        warn("[✅] Already Send Discord Invitation")
+    end)
+
+    if not success then
+        warn("[❌] Join Discord Faile : ", err)
+    end
+end
+
+local filename = "TimeChecking_Yutohub.txt"
+local currentTick = tick()
+
+if not isfile(filename) then
+    safeRequestInvite()
+    writefile(filename, tostring(currentTick))
+else
+    local last = tonumber(readfile(filename)) or 0
+    if (currentTick - last > 21600) or (currentTick - last < 0) then
+        safeRequestInvite()
+        writefile(filename, tostring(currentTick))
+    end
+end
+
