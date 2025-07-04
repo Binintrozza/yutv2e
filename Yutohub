@@ -65,11 +65,5 @@ local currentTick = tick()
 if not isfile(filename) then
     safeRequestInvite()
     writefile(filename, tostring(currentTick))
-else
-    local last = tonumber(readfile(filename)) or 0
-    if (currentTick - last > 21600) or (currentTick - last < 0) then
-        safeRequestInvite()
-        writefile(filename, tostring(currentTick))
-    end
 end
 
