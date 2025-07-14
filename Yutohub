@@ -48,7 +48,7 @@ local Games = {
     ["afss"] = {6299805723,15278073804},
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
-    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452},
+    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947},
 }
 if getgenv().Premium and script_key then
     Games = {
@@ -56,6 +56,7 @@ if getgenv().Premium and script_key then
         ["https://api.luarmor.net/files/v3/loaders/ded2f3d3db2e6b23a33e305e56f3a8f3.lua"] = {35812225},
         ["https://api.luarmor.net/files/v3/loaders/eceddd6b69130a845cd5e650d4d99193.lua"] = {15009415},
         ["https://api.luarmor.net/files/v3/loaders/e1091f9151949d55307100de12b548ec.lua"] = {16819392},
+        ["https://api.luarmor.net/files/v3/loaders/1717c12340c32bc6a5db8d18113fffe6.lua"] = {5292947},
     }
 end
 if getgenv().ExecuteYuto ~= nil then
