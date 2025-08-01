@@ -68,7 +68,10 @@ for i,v in pairs(Games) do
                 getgenv().ExecuteYuto = true
                 if string.find(i,"luarmor") then
                     pcall(function ()
-                        loadstring(game:HttpGet((i)))()	
+                        repeat task.wait() 
+                            spawn(function()loadstring(game:HttpGet((i)))()end)
+                            wait(60)
+                        until getgenv().Config
                     end)
                 else
                     pcall(function ()
