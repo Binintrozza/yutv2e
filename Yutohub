@@ -45,14 +45,14 @@ end
 
 
 local Games = {
-    ["afss"] = {6299805723,15278073804},
+    -- ["afss"] = {6299805723,15278073804},
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
     ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947,9213039},
 }
 if getgenv().Premium and script_key then
     Games = {
-        ["https://api.luarmor.net/files/v3/loaders/24926e795a0abeb4f7656c3399be63c7.lua"] = {9213039},
+        ["https://api.luarmor.net/files/v3/loaders/58a6fbaa6604e93a0575f49c3d0eefd6.lua"] = {9213039},
         ["https://api.luarmor.net/files/v3/loaders/ded2f3d3db2e6b23a33e305e56f3a8f3.lua"] = {35812225,15009415,34644452},
         ["https://api.luarmor.net/files/v3/loaders/e1091f9151949d55307100de12b548ec.lua"] = {16819392},
         ["https://api.luarmor.net/files/v3/loaders/1717c12340c32bc6a5db8d18113fffe6.lua"] = {5292947},
