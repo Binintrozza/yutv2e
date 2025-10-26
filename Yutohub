@@ -50,6 +50,7 @@ local Games = {
     ["AA"] = {10611639},
     ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947,9213039},
     ["https://api.luarmor.net/files/v3/loaders/56724d437828ec48c2b75df7da6e94f6.lua"] = {34873522},
+    ["https://api.luarmor.net/files/v3/loaders/a082d2b77313c1bb2b01dd91fbef622d.lua"] = {12229756},
 }
 if getgenv().Premium and script_key then
     Games = {
