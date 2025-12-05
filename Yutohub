@@ -55,8 +55,7 @@ local Games = {
 if getgenv().Premium and script_key then
     Games = {
         ["https://api.luarmor.net/files/v3/loaders/24926e795a0abeb4f7656c3399be63c7.lua"] = {9213039},
-        ["https://api.luarmor.net/files/v3/loaders/ded2f3d3db2e6b23a33e305e56f3a8f3.lua"] = {35812225,15009415,34644452,16819392},
-        ["https://api.luarmor.net/files/v3/loaders/1717c12340c32bc6a5db8d18113fffe6.lua"] = {5292947},
+        ["https://api.luarmor.net/files/v3/loaders/ded2f3d3db2e6b23a33e305e56f3a8f3.lua"] = {35812225,15009415,34644452,16819392,5292947},
         ["https://api.luarmor.net/files/v3/loaders/56724d437828ec48c2b75df7da6e94f6.lua"] = {34873522},
         ["https://api.luarmor.net/files/v3/loaders/29f064d8809f611980f08e70689117c9.lua"] = {35821155},
     }
