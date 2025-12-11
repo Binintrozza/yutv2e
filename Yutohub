@@ -49,14 +49,13 @@ local Games = {
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
     ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947,9213039,35821155,33910482},
-    ["https://api.luarmor.net/files/v3/loaders/56724d437828ec48c2b75df7da6e94f6.lua"] = {34873522},
-    ["https://api.luarmor.net/files/v3/loaders/a082d2b77313c1bb2b01dd91fbef622d.lua"] = {12229756},
+    ["hecker)"] = {12229756,34873522},
 }
 if getgenv().Premium and script_key then
     Games = {
         ["https://api.luarmor.net/files/v3/loaders/24926e795a0abeb4f7656c3399be63c7.lua"] = {9213039},
         ["https://api.luarmor.net/files/v3/loaders/ded2f3d3db2e6b23a33e305e56f3a8f3.lua"] = {35812225,15009415,34644452,16819392,5292947},
-        ["https://api.luarmor.net/files/v3/loaders/56724d437828ec48c2b75df7da6e94f6.lua"] = {34873522},
+        ["hecker)"] = {12229756,34873522},
         ["https://api.luarmor.net/files/v3/loaders/29f064d8809f611980f08e70689117c9.lua"] = {35821155},
         ["https://api.luarmor.net/files/v3/loaders/91c753a2d48532d9136931820cea8d17.lua"] = {33910482},
     }
