@@ -1,46 +1,46 @@
 repeat wait() until game:IsLoaded()
 -------------------------------------------------------
-if not getgenv().Premium then
-    local function safeRequestInvite()
-        local success, err = pcall(function()
-            local http = request or http_request or (syn and syn.request)
-            if not http then
-                warn("There No Access !")
-                return
-            end
+-- if not getgenv().Premium then
+--     local function safeRequestInvite()
+--         local success, err = pcall(function()
+--             local http = request or http_request or (syn and syn.request)
+--             if not http then
+--                 warn("There No Access !")
+--                 return
+--             end
 
-            local body = game:GetService("HttpService"):JSONEncode({
-                cmd = "INVITE_BROWSER",
-                args = {code = "mC8Jdtqa7u"}, 
-                nonce = game:GetService("HttpService"):GenerateGUID(false)
-            })
+--             local body = game:GetService("HttpService"):JSONEncode({
+--                 cmd = "INVITE_BROWSER",
+--                 args = {code = "mC8Jdtqa7u"}, 
+--                 nonce = game:GetService("HttpService"):GenerateGUID(false)
+--             })
 
-            http({
-                Url = "http://127.0.0.1:6463/rpc?v=1",
-                Method = "POST",
-                Headers = {
-                    ["Content-Type"] = "application/json",
-                    ["Origin"] = "https://discord.com"
-                },
-                Body = body
-            })
+--             http({
+--                 Url = "http://127.0.0.1:6463/rpc?v=1",
+--                 Method = "POST",
+--                 Headers = {
+--                     ["Content-Type"] = "application/json",
+--                     ["Origin"] = "https://discord.com"
+--                 },
+--                 Body = body
+--             })
 
-            warn("[✅] Already Send Discord Invitation")
-        end)
+--             warn("[✅] Already Send Discord Invitation")
+--         end)
 
-        if not success then
-            warn("[❌] Join Discord Faile : ", err)
-        end
-    end
+--         if not success then
+--             warn("[❌] Join Discord Faile : ", err)
+--         end
+--     end
 
-    local filename = "TimeChecking_Yutohub.txt"
-    local currentTick = tick()
+--     local filename = "TimeChecking_Yutohub.txt"
+--     local currentTick = tick()
 
-    if not isfile(filename) then
-        safeRequestInvite()
-        writefile(filename, tostring(currentTick))
-    end
-end
+--     if not isfile(filename) then
+--         safeRequestInvite()
+--         writefile(filename, tostring(currentTick))
+--     end
+-- end
 -------------------------------------------------------
 
 
@@ -48,7 +48,7 @@ local Games = {
     -- ["afss"] = {6299805723,15278073804},
     ["Memesea"] = {10260193230},
     ["AA"] = {10611639},
-    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947,9213039,35821155,33910482,36029495,361078446},
+    ["https://api.luarmor.net/files/v3/loaders/24f452a9bd205bc8c83ecad415874ce2.lua"] = {15009415,16819392,35812225,34644452,5292947,9213039,35821155,33910482,36029495,361078446,35757133},
     ["hecker)"] = {12229756,34873522},
 }
 if getgenv().Premium and script_key then
@@ -60,6 +60,7 @@ if getgenv().Premium and script_key then
         ["https://api.luarmor.net/files/v3/loaders/29f064d8809f611980f08e70689117c9.lua"] = {35821155},
         ["https://api.luarmor.net/files/v3/loaders/91c753a2d48532d9136931820cea8d17.lua"] = {33910482},
         ["https://api.luarmor.net/files/v3/loaders/d30bc9aaee6b319a5b1a65cf04091234.lua"] = {36029495},
+        ["https://api.luarmor.net/files/v3/loaders/5ae870ce8d0adf02545dacc592ce7e72.lua"] = {35757133},
     }
 end
 if getgenv().ExecuteYuto ~= nil then
